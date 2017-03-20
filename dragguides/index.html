@@ -1,0 +1,93 @@
+<!doctype html>
+
+<html>
+
+  <head>
+    <link rel="stylesheet" type="text/css" href="lib/jquery-ui.min.css">
+
+    <style>
+      body {
+        font-family: courier new, courier;
+        font-size: 12px;
+      }
+      .draggable {
+        border: 1px solid #ccc;
+        background-color: #ff0fff;
+        display: inline-block;
+        cursor: move;
+        position: absolute;
+      }
+      .guide {
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+      #guide-h {
+        border-top: 2px dashed #75f150;
+        width: 100%;
+      }
+      #guide-v {
+        border-left: 2px dashed #4c5ce9;
+        height: 100%;
+      }
+      .items {
+        height: 50px;
+        background: #3c9f0d;
+        position: absolute;
+      }
+      .items.item1 {
+        top: 80px;
+        left: 30px;
+        width: 50px;
+        background:rgb(232, 104, 22)
+      }
+      .items.item2 {
+        left: 30px;
+        top: 160px;
+        width: 300px;
+        height: 400px;
+        background: #adadee;
+      }
+      .items.item3 {
+        background: #1a60af;
+        left: 10px;
+        width: 150px;
+        height: 150px;
+        top: 10px;
+      }
+      .items.item4 {
+        width: 100px;
+        height: 50px;
+        left: 40px;
+      }
+      .items.item5 {
+        background: #c6125d;
+        left: 20px;
+        width: 100px;
+        height: 100px;
+        top: 200px;
+      }
+      .line {
+        border-top: 2px dashed #23d3d3;
+      }
+    </style>
+  </head>
+
+  <body class="parent">
+    <div class="draggable items item1">drag me!</div>
+    <div class="draggable items item2">
+      <div class="draggable items item3">hep hep1</div>
+      <div class="draggable items item5">hep hep2</div>
+    </div>
+    <div class="draggable items item4">hep hep</div>
+
+    <div id="guide-h" class="guide"></div>
+    <div id="guide-v" class="guide"></div>
+    <script src="lib/underscore-min.js"></script>
+    <script src="lib/jquery-2.2.1.min.js"></script>
+    <script src="lib/jquery-ui.min.js"></script>
+    <script src="guides.js"></script>
+  </body>
+
+</html>
