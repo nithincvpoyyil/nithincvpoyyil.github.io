@@ -1,6 +1,36 @@
 <!doctype html>
 
 <html>
+  <head>
+    <style>
+    body {
+          background: #3498db;
+          font-family: sans-serif;
+          color:#fff;
+        }
+      h1 {
+          position: relative;
+          color: rgba(0, 0, 0, .3);
+          font-size: 5em
+      }
+      h1:before {
+          content: attr(data-text);
+          position: absolute;
+          overflow: hidden;
+          max-width: 7em;
+          white-space: nowrap;
+          color: #fff;
+          animation: loading 8s linear;
+            -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+      }
+      @keyframes loading {
+          0% {
+              max-width: 0;
+          }
+      }
+    </style>
+  </head>
   <h1 data-text="Site temporarily unavailable">Site temporarily unavailable</h1>
   <h2> Please connect me on https://www.linkedin.com/in/nithincv/</h2>
 <a href="https://nithincvpoyyil.github.io/fakejson/">Fake JSON URL</a>
