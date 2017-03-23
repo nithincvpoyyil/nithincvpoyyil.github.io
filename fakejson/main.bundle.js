@@ -59,7 +59,7 @@ SharedService = __decorate([
     __metadata("design:paramtypes", [])
 ], SharedService);
 
-//# sourceMappingURL=/home/nithincv/dev/couchbase-chrome-extension-master/AngularExtension/src/shared.service.js.map
+//# sourceMappingURL=/home/nithincv/dev/fakeDataHome/fakejsongenerator/FakeJSONGenerator/src/shared.service.js.map
 
 /***/ }),
 
@@ -100,6 +100,8 @@ var AppComponent = (function () {
         this.expressionTypes = this.listService.getExpressionTypes();
     }
     AppComponent.prototype.ngOnInit = function () {
+        this.insert('name', 'name');
+        this.insert('email', 'email');
     };
     AppComponent.prototype.addInput = function (inputItem) {
         this.inputList.push(inputItem);
@@ -128,25 +130,25 @@ var AppComponent = (function () {
         this.listService.addInput(inputComponentInstance.getInputItem());
         ref.changeDetectorRef.detectChanges();
     };
-    AppComponent.prototype.insert = function () {
+    AppComponent.prototype.insert = function (keyValue, exprVal) {
         this.expressionTypes = this.listService.getExpressionTypes();
-        var expression = 'random-string';
-        var variable = 'new-key-' + this.listService.generateRandom(8);
+        var expression = exprVal ? exprVal : 'random-string';
+        var variable = keyValue ? keyValue : 'new-key-' + this.listService.generateRandom(8);
         var inputItem = { 'expression': expression, 'variable': variable };
         this.addInput(inputItem);
         this.runJsonGenrateFunction();
     };
     AppComponent.prototype.downloadJson = function () {
-        var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(this.orginalJSONStringified);
+        var dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(this.orginalJSONStringified);
         var dlAnchorElem = document.getElementById('dummy-anchor-element-to-download');
         dlAnchorElem.setAttribute("href", dataStr);
         dlAnchorElem.setAttribute("download", "fakeJSON.json");
         dlAnchorElem.click();
     };
-    AppComponent.prototype.printVals = function () {
-        this.inputList.filter(function (inputItem) {
-            console.info(inputItem.variable, ' : ', inputItem.expression);
-        });
+    AppComponent.prototype.copyToClipBoard = function () {
+        var element = document.querySelector('#code-generated-unique-id');
+        element.select();
+        document.execCommand('copy');
     };
     AppComponent.prototype.onUpdateOfInputItem = function (newInputItem, oldInputItem) {
         this.updateInputList(newInputItem, oldInputItem);
@@ -235,7 +237,8 @@ var AppComponent = (function () {
         // http://jsfiddle.net/KJQ9K/554/
         // http://stackoverflow.com/questions/4810841/how-can-i-pretty-print-json-using-javascript
         jsonString = jsonString.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-        return jsonString.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+        var regex = /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g;
+        return jsonString.replace(regex, function (match) {
             var cls = 'number';
             if (/^"/.test(match)) {
                 if (/:$/.test(match)) {
@@ -266,7 +269,7 @@ var AppComponent = (function () {
     };
     AppComponent.prototype.showWithLovePopup = function () {
         bootbox.alert({
-            message: "Thank you for using the app, kindly share your thoughts!",
+            message: 'Thank you for using the app, Kindly share your thoughts and feedbacks!',
             backdrop: true
         });
     };
@@ -286,7 +289,7 @@ AppComponent = __decorate([
 ], AppComponent);
 
 var _a, _b, _c, _d;
-//# sourceMappingURL=/home/nithincv/dev/couchbase-chrome-extension-master/AngularExtension/src/app.component.js.map
+//# sourceMappingURL=/home/nithincv/dev/fakeDataHome/fakejsongenerator/FakeJSONGenerator/src/app.component.js.map
 
 /***/ }),
 
@@ -370,7 +373,7 @@ InputComponent = __decorate([
 ], InputComponent);
 
 var _a, _b, _c, _d;
-//# sourceMappingURL=/home/nithincv/dev/couchbase-chrome-extension-master/AngularExtension/src/input.component.js.map
+//# sourceMappingURL=/home/nithincv/dev/fakeDataHome/fakejsongenerator/FakeJSONGenerator/src/input.component.js.map
 
 /***/ }),
 
@@ -407,7 +410,7 @@ if (__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment *
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["a" /* enableProdMode */])();
 }
 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_4__app___["a" /* AppModule */]);
-//# sourceMappingURL=/home/nithincv/dev/couchbase-chrome-extension-master/AngularExtension/src/main.js.map
+//# sourceMappingURL=/home/nithincv/dev/fakeDataHome/fakejsongenerator/FakeJSONGenerator/src/main.js.map
 
 /***/ }),
 
@@ -460,7 +463,7 @@ AppModule = __decorate([
     })
 ], AppModule);
 
-//# sourceMappingURL=/home/nithincv/dev/couchbase-chrome-extension-master/AngularExtension/src/app.module.js.map
+//# sourceMappingURL=/home/nithincv/dev/fakeDataHome/fakejsongenerator/FakeJSONGenerator/src/app.module.js.map
 
 /***/ }),
 
@@ -474,7 +477,7 @@ AppModule = __decorate([
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_1__app_module__["a"]; });
 
 
-//# sourceMappingURL=/home/nithincv/dev/couchbase-chrome-extension-master/AngularExtension/src/index.js.map
+//# sourceMappingURL=/home/nithincv/dev/fakeDataHome/fakejsongenerator/FakeJSONGenerator/src/index.js.map
 
 /***/ }),
 
@@ -517,7 +520,7 @@ PouchService = __decorate([
     __metadata("design:paramtypes", [])
 ], PouchService);
 
-//# sourceMappingURL=/home/nithincv/dev/couchbase-chrome-extension-master/AngularExtension/src/pouchdb.service.js.map
+//# sourceMappingURL=/home/nithincv/dev/fakeDataHome/fakejsongenerator/FakeJSONGenerator/src/pouchdb.service.js.map
 
 /***/ }),
 
@@ -534,7 +537,7 @@ PouchService = __decorate([
 var environment = {
     production: true
 };
-//# sourceMappingURL=/home/nithincv/dev/couchbase-chrome-extension-master/AngularExtension/src/environment.js.map
+//# sourceMappingURL=/home/nithincv/dev/fakeDataHome/fakejsongenerator/FakeJSONGenerator/src/environment.js.map
 
 /***/ }),
 
@@ -592,7 +595,7 @@ var environment = {
 
 
 
-//# sourceMappingURL=/home/nithincv/dev/couchbase-chrome-extension-master/AngularExtension/src/polyfills.js.map
+//# sourceMappingURL=/home/nithincv/dev/fakeDataHome/fakejsongenerator/FakeJSONGenerator/src/polyfills.js.map
 
 /***/ }),
 
@@ -604,7 +607,7 @@ exports = module.exports = __webpack_require__(146)();
 
 
 // module
-exports.push([module.i, "\n/* Taken from http://bootsnipp.com/snippets/8deZ */\n\n.btn-circle {\n  width: 35px;\n  height: 35px;\n  text-align: center;\n  padding: 2px 0;\n  font-size: 20px;\n  line-height: 1.65;\n  border-radius: 30px;\n}\n\n.input-item-container {\n  width: 100%;\n  position: relative;\n  top: 80px;\n  left: 14px;\n  max-height: 500px;\n  min-height: 400px;\n  overflow: hidden;\n  overflow-y: auto;\n  padding-bottom: 10px;\n}\n\n.output-json-container {\n  width: 100%;\n  position: relative;\n  top: 80px;\n  left: 14px;\n  max-height: 500px;\n  overflow: hidden;\n  overflow-y: auto;\n  padding: 5px;\n  border: 1px dotted #1e90ff;\n  min-height: 400px;\n  background: #f5f5f5;\n  padding-bottom: 10px;\n}\n\n\n/* refer code link*/\n\n.output-json-container pre {\n  padding: 5px;\n  margin: 5px;\n  border: 0;\n  background: transparent;\n}\n\na.btn.btn-circle.btn-lg {\n  font-size: 15px;\n  line-height: 30px;\n}\n\n\nspan.item-limit-text {\n    color: #fff;\n    font-size: 1.5rem;\n    margin-right: 19px;\n    display: inline-block;\n    position: relative;\n    top: 5px;\n}\n\nspan.item-limit-input {\n    width: 50px;\n    overflow: hidden;\n    display: inline-block;\n    margin-right: 50px;\n    position: relative;\n    top: 12px;\n    text-align: center;\n    color: #444;\n}\n\nspan.item-limit-input input[type=\"number\"] {\n\n    padding:0 5px;\n}", ""]);
+exports.push([module.i, "/* Taken from http://bootsnipp.com/snippets/8deZ */\n\n.btn-circle {\n  width: 35px;\n  height: 35px;\n  text-align: center;\n  padding: 2px 0;\n  font-size: 20px;\n  line-height: 1.65;\n  border-radius: 30px;\n}\n\n.input-item-container {\n  width: 100%;\n  position: relative;\n  top: 80px;\n  left: 14px;\n  max-height: 500px;\n  min-height: 400px;\n  overflow: hidden;\n  overflow-y: auto;\n  padding-bottom: 10px;\n}\n\n.output-json-container {\n  width: 100%;\n  position: relative;\n  top: 80px;\n  left: 14px;\n  max-height: 500px;\n  overflow: hidden;\n  overflow-y: auto;\n  padding: 5px;\n  border: 1px dotted #1e90ff;\n  min-height: 400px;\n  background: #f5f5f5;\n  padding-bottom: 10px;\n}\n\n\n/* refer code link*/\n\n.output-json-container pre {\n  padding: 5px;\n  margin: 5px;\n  border: 0;\n  background: transparent;\n}\n\na.btn.btn-circle.btn-lg {\n  font-size: 15px;\n  line-height: 30px;\n}\n\n.btn-copy {\n  color: #fff4f4;\n  background-color: #ce1737;\n  border-color: #e02c2c;\n}\n\nspan.item-limit-text {\n  color: #fff;\n  font-size: 1.5rem;\n  margin-right: 19px;\n  display: inline-block;\n  position: relative;\n  top: 5px;\n}\n\nspan.item-limit-input {\n  width: 50px;\n  overflow: hidden;\n  display: inline-block;\n  margin-right: 50px;\n  position: relative;\n  top: 12px;\n  text-align: center;\n  color: #444;\n}\n\nspan.item-limit-input input[type=\"number\"] {\n  padding: 0 5px;\n}\n\n#code-generated-unique-id {\n  width: 1px;\n  height: 1px;\n  outline: none;\n  margin: 0;\n  padding: 0;\n  border: 0;\n  position:fixed;\n  top:0;\n  left:0;\n}\n", ""]);
 
 // exports
 
@@ -635,7 +638,7 @@ module.exports = module.exports.toString();
 /***/ 615:
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <nav class=\"navbar navbar-default navbar-fixed-top\" style=\"background-color: #2196F3;\">\n    <div class=\"navbar-header\">\n      <span class=\"navbar-brand\" style=\"color: #FFFFFF\" (click)=\"printVals()\">Fake JSON Generator </span>\n    </div>\n    <div class=\"nav navbar-nav navbar-right\">\n      <span class=\"item-limit-text\">Number of Items:</span>\n      <span class=\"item-limit-input\"><input type='number'  min=\"1\" max=\"1000\"  [(ngModel)]=\"limitValue\"/></span>\n    </div>\n  </nav>\n\n  <div class=\"container-fluid\">\n    <div class=\"row\">\n      <div class=\"col-sm-12 col-sm-12 col-md-6\">\n        <div class=\"row title-section\">\n          JSON - (Key,Value)\n        </div>\n        <div class=\"input-item-container\">\n          <!--  <ng-container #inputitemcontainer></ng-container> -->\n          <input-item *ngFor=\"let inputItem of inputList\" (onInputItemChange)=\"onUpdateOfInputItem($event,inputItem)\" (onDeleteItem)=\"removeInput($event.variable)\"\n            [(variable)]=\"inputItem.variable\" [(expression)]=\"inputItem.expression\"></input-item>\n        </div>\n      </div>\n      <div class=\"col-sm-12 col-sm-12 col-md-6\">\n        <div class=\"row title-section\">\n          JSON - Generated\n        </div>\n        <div class=\"output-json-container\">\n\n          <pre class=\"code-generated\" innerHtml=\"{{jsonGenerated}}\"></pre>\n        </div>\n      </div>\n    </div>\n  </div>\n\n\n\n  <a (click)=\"insert()\" title=\"add JSON key-value\" class=\"btn btn-circle btn-primary btn-lg\" style=\"position: fixed; bottom: 15px; right: 15px\">\n    <span class=\"glyphicon glyphicon-plus\"></span>\n  </a>\n\n\n  <a (click)=\"runJsonGenrateFunction()\" title=\"generate JSON\" class=\"btn btn-circle btn-success btn-lg\" style=\"position: fixed; bottom: 15px; right: 60px\">\n    <span class=\"glyphicon glyphicon-play\"></span>\n  </a>\n\n  <a (click)=\"downloadJson()\" title=\"download JSON\" class=\"btn btn-circle btn-warning btn-lg\"\n    style=\"position: fixed; bottom: 15px; right: 105px\">\n    <span class=\"glyphicon glyphicon-download-alt\"></span>\n  </a>\n\n  <a (click)=\"showWithLovePopup()\" title=\"with <3 of JS\" class=\"btn btn-circle btn-danger btn-lg\" style=\"position: fixed; bottom: 15px; right: 150px\">\n    <span class=\"glyphicon glyphicon-heart\"></span>\n  </a>\n</div>\n"
+module.exports = "<div>\n   <input id=\"code-generated-unique-id\"  [(ngModel)]=\"orginalJSONStringified\">\n  <nav class=\"navbar navbar-default navbar-fixed-top\" style=\"background-color: #2196F3;\">\n    <div class=\"navbar-header\">\n      <span class=\"navbar-brand\" style=\"color: #FFFFFF;font-weight:900;\" (click)=\"printVals()\">Fake JSON Generator </span>\n    </div>\n    <div class=\"nav navbar-nav navbar-right\">\n      <span class=\"item-limit-text\">Number of Items:</span>\n      <span class=\"item-limit-input\"><input type='number'  min=\"1\" max=\"1000\"  (keyup)=\"runJsonGenrateFunction()\" [(ngModel)]=\"limitValue\"/></span>\n    </div>\n  </nav>\n\n  <div class=\"container-fluid\">\n    <div class=\"row\">\n      <div class=\"col-sm-12 col-sm-12 col-md-6\">\n        <div class=\"row title-section left\">\n          (Key,Value)\n        </div>\n        <div class=\"input-item-container\">\n          <!--  <ng-container #inputitemcontainer></ng-container> -->\n          <input-item *ngFor=\"let inputItem of inputList\" (onInputItemChange)=\"onUpdateOfInputItem($event,inputItem)\" (onDeleteItem)=\"removeInput($event.variable)\"\n            [(variable)]=\"inputItem.variable\" [(expression)]=\"inputItem.expression\"></input-item>\n        </div>\n      </div>\n      <div class=\"col-sm-12 col-sm-12 col-md-6\">\n        <div class=\"row title-section right\">\n          Generated JSON\n        </div>\n        <div class=\"output-json-container\">\n          <pre class=\"code-generated\" innerHtml=\"{{jsonGenerated}}\"></pre>\n        </div>\n      </div>\n    </div>\n  </div>\n\n\n\n  <a (click)=\"showWithLovePopup()\" title=\"with <3 of JS\" class=\"btn btn-circle btn-danger btn-lg\" style=\"position: fixed; bottom: 15px; right: 15px\">\n    <span class=\"glyphicon glyphicon-heart\"></span>\n  </a>\n\n\n  <a (click)=\"downloadJson()\" title=\"download JSON\" class=\"btn btn-circle btn-warning btn-lg\"\n    style=\"position: fixed; bottom: 15px; right: 60px\">\n    <span class=\"glyphicon glyphicon-download-alt\"></span>\n  </a>\n\n  <a (click)=\"insert()\" title=\"add JSON key-value\" class=\"btn btn-circle btn-primary btn-lg\" style=\"position: fixed; bottom: 15px; right: 105px\">\n    <span class=\"glyphicon glyphicon-plus\"></span>\n  </a>\n\n  <a (click)=\"runJsonGenrateFunction()\" title=\"generate JSON\" class=\"btn btn-circle btn-success btn-lg\" style=\"position: fixed; bottom: 15px; right: 150px\">\n    <span class=\"glyphicon glyphicon-play\"></span>\n  </a>\n\n  <a (click)=\"copyToClipBoard()\" title=\"Copy to clip board\" class=\"btn btn-circle btn-copy btn-lg\" style=\"position: fixed; bottom: 15px; right: 195px\">\n    <span class=\"glyphicon glyphicon-copy\"></span>\n  </a>\n</div>\n"
 
 /***/ }),
 
