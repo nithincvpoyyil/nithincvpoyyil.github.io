@@ -13,8 +13,8 @@
     authorize: true
     scope: w_share r_emailaddress r_basicprofile 
   </script>
-  <script type="text/javascript">
-    var shareContent = function () {
+  <script >
+    function shareContent () {
 
       let url = window.document.URL;
 
@@ -38,7 +38,7 @@
 
     };
 
-    var shareArticleToLinkedIn = function () {
+    function shareArticleToLinkedIn() {
       if (IN && IN.User.isAuthorized()) {
         console.info('LinkedIn  logged - okey 000000000000');
 
