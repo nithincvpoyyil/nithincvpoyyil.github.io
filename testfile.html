@@ -18,7 +18,7 @@
 
       // Build the JSON payload containing the content to be shared
       var payload = {
-        "comment": "Test Article: For more details visit this page : " + url,
+        "comment": "Please ignore , this is a test article - Test Article: For more details visit this page : " + url,
         "visibility": {
           "code": "anyone"
         }
@@ -27,11 +27,11 @@
       IN.API.Raw("/people/~/shares?format=json")
         .method("POST")
         .body(JSON.stringify(payload))
-        .result(() => {
-          alert('posted success')
+        .result((bb) => {
+          console.info('posted success',bb)
         })
-        .error(() => {
-          alert('posted fail')
+        .error((cc) => {
+          console.info('posted fail',cc)
         });
 
     };
@@ -41,8 +41,8 @@
         console.info('LinkedIn  logged - okey 000000000000');
 
       } else if (IN) {
-        IN.User.authorize(() => {
-          console.info('LinkedIn  logged - okey 11111111111');
+        IN.User.authorize((aa) => {
+          console.info('LinkedIn  logged - okey 11111111111',aa);
         }, this);
       }
     };
