@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <title>Yammer</title>
+
+  <script type="text/javascript" src="//platform.linkedin.com/in.js">
+    api_key: 86e gzp7jrwnd33
+  </script>
+  <script type="text/javascript">
+    var shareContent = function () {
+
+      let url = window.document.URL;
+
+      // Build the JSON payload containing the content to be shared
+      var payload = {
+        "comment": "Test Article: For more details visit this page : " + url,
+        "visibility": {
+          "code": "anyone"
+        }
+      };
+
+      IN.API.Raw("/people/~/shares?format=json")
+        .method("POST")
+        .body(JSON.stringify(payload))
+        .result(() => {
+          alert('posted success')
+        })
+        .error(() => {
+          alert('posted fail')
+        });
+
+      return deferred.promise;
+    };
+
+    var shareArticleToLinkedIn = function () {
+      if (IN && IN.User.isAuthorized()) {
+        console.info('LinkedIn  logged - okey 000000000000');
+
+      } else if (IN) {
+        IN.User.authorize(() => {
+          console.info('LinkedIn  logged - okey 11111111111');
+        }, this);
+      }
+    };
+  </script>
+</head>
+
+<body>
+  <div class="demo-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100">
+    <button class="demo-ribbon" onclick="shareArticleToLinkedIn()">One</button>
+    <button class="demo-ribbon" onclick="shareContent()">two</button>
+  </div>
+</body>
+
+</html>
