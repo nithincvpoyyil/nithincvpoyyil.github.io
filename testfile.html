@@ -29,10 +29,10 @@
       IN.API.Raw("/people/~/shares?format=json")
         .method("POST")
         .body(JSON.stringify(payload))
-        .result((bb) => {
+        .result(function(bb) {
           console.info('posted success',bb)
         })
-        .error((cc) => {
+        .error(function(cc){
           console.info('posted fail',cc)
         });
 
@@ -43,7 +43,7 @@
         console.info('LinkedIn  logged - okey 000000000000');
 
       } else if (IN) {
-        IN.User.authorize((aa) => {
+        IN.User.authorize(function(aa) {
           console.info('LinkedIn  logged - okey 11111111111',aa);
         }, this);
       }
