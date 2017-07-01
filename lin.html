@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=11; IE=EmulateIE11"> 
+    <meta http-equiv="X-UA-Compatible" content="IE=11; IE=EmulateIE11">
     <title>Angular JS</title>
     <script type="text/javascript" data-app-id="kheJ4tjurMfyXbtJLMA" src="https://c64.assets-yammer.com/assets/platform_js_sdk.js"></script>
 </head>
@@ -12,13 +12,16 @@
     <div ng-controller="DemoCtrl as demo">
         <button class="" ng-click="demo.signinLinkedIn()">SignIn to LinkedIn</button>
         <button class="" ng-click="demo.getLoginStatus()">Check Login Status</button>
-        <h1>hi {{demo.firstName}}</h1>
+        <h1>hi - {{demo.firstName}}</h1>
+        <h2>LOGIN STATUS - {{demo.isLogin}}</h2>
+
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
     <script>
         var myApp = angular.module("jsbin", []);
         myApp.controller("DemoCtrl", function ($scope, $window, $http) {
 
+            this.isLogin = false;
             this.signinLinkedIn = function () {
 
                 let abc = 'https://www.linkedin.com/oauth/v2/authorization?' + [
@@ -36,6 +39,7 @@
             this.getLoginStatus = function () {
                 console.log('is Logined', IN.User.isAuthorized());
                 var self = this;
+                this.isLogin = IN.User.isAuthorized();
                 //IN.User.refresh();
                 if (IN.User.isAuthorized()) {
                     IN.API.Raw("/people/~").result(function (data) {
