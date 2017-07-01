@@ -11,6 +11,7 @@
     <div ng-controller="DemoCtrl as demo">
         <button class="" ng-click="demo.signinLinkedIn()">SignIn to LinkedIn</button>
         <button class="" ng-click="demo.getLoginStatus()">Check Login Status</button>
+        <h1>hi {{demo.firstName}}</h1>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
     <script>
@@ -33,10 +34,13 @@
 
             this.getLoginStatus = function () {
                 console.log('is Logined', IN.User.isAuthorized());
+                var self = this;
                 //IN.User.refresh();
                 if (IN.User.isAuthorized()) {
                     IN.API.Raw("/people/~").result(function (data) {
                         console.info(data);
+                        self.firstName = data.firstName;
+                        $scope.$apply();
                     }).error(function (e) {
                         console.error(e);
                     });
