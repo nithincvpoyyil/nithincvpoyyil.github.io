@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Angular JS</title>
+    <script type="text/javascript" data-app-id="kheJ4tjurMfyXbtJLMA" src="https://c64.assets-yammer.com/assets/platform_js_sdk.js"></script>
+</head>
+
+<body>
+    <div ng-controller="DemoCtrl as demo">
+        <button class="" ng-click="demo.signinLinkedIn()">SignIn to LinkedIn</button>
+        <button class="" ng-click="demo.getLoginStatus()">Check Login Status</button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+    <script>
+        var myApp = angular.module("jsbin", []);
+        myApp.controller("DemoCtrl", function ($scope, $window, $http) {
+
+            this.signinLinkedIn = function () {
+
+                let abc = 'https://www.linkedin.com/oauth/v2/authorization?' + [
+                    'scope=r_basicprofile%20w_share',
+                    'state=RNDM_DCEeFWf45A53sdfKef424',
+                    'redirect_uri=https://nithincvpoyyil.github.io/lin.html',
+                    'client_id=86egzp7jrwnd33',
+                    'response_type=code'
+                ].join('&');
+                // window.open(abc);
+
+                document.location = abc;
+            };
+
+            this.getLoginStatus = function () {
+                console.log('is Logined', IN.User.isAuthorized());
+                //IN.User.refresh();
+                if (IN.User.isAuthorized()) {
+                    IN.API.Raw("/people/~").result(function (data) {
+                        console.info(data);
+                    }).error(function (e) {
+                        console.error(e);
+                    });
+                }
+            };
+
+        });
+
+        angular.element(document).ready(function () {
+            angular.bootstrap(document, ['jsbin']);
+        });
+
+        window.myOnloadFunction = function () {
+            console.log('loaded the data');
+            IN.User.refresh();
+            console.info('LOGIn_status = ', IN.User.isAuthorized());
+        };
+
+        (function () {
+            var e = document.createElement('script');
+            e.type = 'text/javascript';
+            e.async = false;
+            e.src = 'http://platform.linkedin.com/in.js?async=true';
+            e.onload = function () {
+                IN.init({
+                    api_key: '86egzp7jrwnd33',
+                    authorize: true,
+                    credentials_cookie: true,
+                    onLoad: "myOnloadFunction"
+                });
+            };
+
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(e, s);
+        })();
+    </script>
+</body>
