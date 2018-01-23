@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=11; IE=EmulateIE11">
+    <title>Analytics -GA-TAG</title>
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112923553-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-112923553-1');
+      gtag('config', 'UA-112923553-1', {
+             'page_title': 'homepage',
+             'page_location': window.location.href,
+             'page_path': '/home'
+      });
+    </script>
+    
+</head>
+
+<body>
+    <div ng-controller="DemoCtrl as demo">
+        <button class="" ng-click="demo.test()">Send Data</button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+    <script>
+        var myApp = angular.module("jsbin", []);
+        myApp.controller("DemoCtrl", function ($scope, $window, $http) {
+            this.test = function(){
+                gtag('event', 'login', {
+                  'name': 'nithin',
+                  'age': '23',
+                });
+                
+                 gtag('event', 'search', {
+                  'q': 'name',
+                  'value': 'john',
+                });
+                
+            };
+        });
+        
+        angular.element(document).ready(function () {
+            angular.bootstrap(document, ['jsbin']);
+        });
+    </script>
+</body>
