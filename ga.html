@@ -45,10 +45,10 @@
         var id = 0;
         if(window.localStorage.getItem('counter-d')){
             id=Number(window.localStorage.getItem('counter-d'))+1;
-          window.localStorage.setItem(id)
+          window.localStorage.setItem('counter-d',id)
         }else{
             id=1000;
-            window.localStorage.setItem(id);
+            window.localStorage.setItem('counter-d', id);
             
         }
         
