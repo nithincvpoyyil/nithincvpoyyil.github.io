@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=11; IE=EmulateIE11">
+    <title>Analytics</title>
+    <!-- Google Analytics -->
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-121611847-3', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <!-- End Google Analytics -->
+
+</head>
+
+<body>
+    <div ng-controller="DemoCtrl as demo">
+        Test:
+        <select style="padding: 5px; font-size:10px;" ng-options="item as item.label for item in items track by item.id" ng-model="selected"
+            ng-change="change()"></select>
+        <input ng-model="textval" ng-click="demo.test()" style="padding: 10px; height:5px;" />
+        <button class="" ng-click="demo.signinLinkedIn()">Send Data</button>
+    </div>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+    <script>
+        var myApp = angular.module("jsbin", []);
+        myApp.controller("DemoCtrl", function ($scope, $window, $http) {
+
+
+            $scope.items = [{
+                id: 1100,
+                label: 'testuser1',
+                subItem: { name: 'aSubItem' }
+            }, {
+                id: 1101,
+                label: 'testuser2',
+                subItem: { name: 'bSubItem' }
+            }, {
+                id: 1103,
+                label: 'testuser3',
+                subItem: { name: 'bSubItem' }
+            }];
+
+            $scope.selected = $scope.items[0];
+            ga('set', 'dimension1', 'BSB-' + $scope.items[Math.floor(Math.random() * 3)-1].id);
+            ga('set', 'dimension2', 'Free');
+
+            $scope.change = () => {
+                console.log('test');
+                ga('set', 'dimension1', 'BSB-' + $scope.items[Math.floor(Math.random() * 3)-1].id);
+                ga('set', 'dimension2', 'Free');
+            };
+
+            $scope.test = () => {
+                ga('send', 'event', 'inputclick', 'Input box SendData', 'sendData');
+            };
+
+            $scope.signinLinkedIn = () => {
+
+                ga('send', 'event', {
+                    'eventCategory': 'Click',
+                    'eventAction': 'SendData',
+                    'eventLabel': 'sendData',
+                    'eventValue': $scope.selected.id
+                });
+
+            };
+        });
+
+        var id = 0;
+        if (window.localStorage.getItem('counter-d')) {
+            id = Number(window.localStorage.getItem('counter-d')) + 1;
+            window.localStorage.setItem('counter-d', id)
+        } else {
+            id = 1000;
+            window.localStorage.setItem('counter-d', id);
+
+        }
+
+        ga('set', 'userId', id);
+        ga('set', 'appName', 'testGA');
+
+        angular.element(document).ready(function () {
+            angular.bootstrap(document, ['jsbin']);
+        });
+
+    </script>
+</body>
