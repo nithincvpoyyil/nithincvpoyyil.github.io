@@ -73,8 +73,12 @@
 
             $scope.change = () => {
 
-                let id1 = $scope.items[Math.floor(Math.random() * 3) - 1].id;
-                console.log('test', id1, '\n', ga);
+                
+            let random = (Math.floor(Math.random() * 3) - 1);
+            if (random < 0) random = 0;
+
+            var idUser = Number($scope.items[random].id);
+                console.log('test', idUser, '\n', ga);
             };
 
             $scope.test = () => {
