@@ -43,12 +43,12 @@
         });
         
         var id = 0;
-        if(window.localStorage.get('counter-d')){
-            id=Number(window.localStorage.get('counter-d'))+1;
-          window.localStorage.set(id)
+        if(window.localStorage.getItem('counter-d')){
+            id=Number(window.localStorage.getItem('counter-d'))+1;
+          window.localStorage.setItem(id)
         }else{
             id=1000;
-            window.localStorage.set(id);
+            window.localStorage.setItem(id);
             
         }
         
