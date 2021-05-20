@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <style>
+      #button {
+        background-color: white;
+        border: 0.05px solid rgb(97 96 96 / 55%);
+        padding: 10px 20px 10px 20px;
+        border-radius: 20px;
+        text-align: center;
+        color: #12a1e4;
+        cursor: pointer;
+        font-size: 14px;
+        box-shadow: 1px 1px 1px rgb(97, 96, 96);
+        margin: 10px 5px 15px 40px;
+      }
+      #text {
+        margin-left: 40px;
+        border-radius: 8px;
+        background-color: whitesmoke;
+      }
+    </style>
+  </head>
+  <body>
+    <br />
+    <label style="font-size: 20px; margin-left: 20px">Message to parent:</label
+    ><br /><br />
+    <textarea
+      id="text"
+      placeholder="Enter text here..."
+      cols="70"
+      rows="10"
+    ></textarea
+    ><br /><br />
+    <button id="button" onclick="send()">Send</button>
+    <script>
+      function send() {
+        var val = document.querySelector("#text").value;
+        document.querySelector("#text").value = "";
+        window.opener && window.opener.postMessage(val, window.origin);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <style>
+      #btn {
+        background-color: white;
+        border: 0.05px solid rgb(97 96 96 / 55%);
+        padding: 10px 20px 10px 20px;
+        border-radius: 20px;
+        text-align: center;
+        color: #12a1e4;
+        cursor: pointer;
+        font-size: 14px;
+        box-shadow: 1px 1px 1px rgb(97, 96, 96);
+        margin: 50px 5px 15px 15px;
+      }
+      #messages {
+        list-style-type: none;
+      }
+      li {
+        padding: 8px 16px;
+        border-bottom: 1px solid #ddd;
+        background-color: aliceblue;
+      }
+      li:last-child {
+        border-bottom: none;
+      }
+    </style>
+  </head>
+  <body>
+    <button onClick="handleClick()" title="Click to open pop up" id="btn">
+      Open
+    </button>
+    <br /><br />
+    <label style="margin-left: 20px; font-size: 20px"
+      >Messages from popup:</label
+    >
+    <ul id="messages"></ul>
+    <script>
+      function handleClick() {
+         window.windowRef = window.open(
+          "./window.html",
+          "login",
+          `
+      scrollbars=no,
+      width=${screen.availWidth},
+      height=${screen.availHeight},
+      top=${0},
+      left=${0},
+      resizable=no
+      `
+        );
+      }
+
+      window.addEventListener("message", (e) => {
+        if (e.data === "end" || e.data === "exit") {
+         window.windowRef.close();
+        }
+        document.querySelector("#messages").innerHTML =
+          document.querySelector("#messages").innerHTML +
+          "<li>" +
+          e.data +
+          "</li>";
+      });
+    </script>
+  </body>
+</html>
